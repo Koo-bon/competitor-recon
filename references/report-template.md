@@ -38,7 +38,14 @@ The 1–3 jobs, each mapped to the competitor that owns it.
 
 ## 5. Rise-to-fame cards  ← for the 2–3 breakout brands
 Compact card each (see rise-to-fame.md): emotional core, lever sequence,
-timeline, 🔁 repeatable vs 🎲 can't-copy.
+timeline, 🔁 repeatable vs 🎲 can't-copy. **Embed the brand's actual campaign
+images** (downloaded via `fc.py images`) inline so the creative is visible:
+
+```markdown
+![Nike Dream Crazy key visual](recon/nike/campaign/img_02.jpg)
+*Nike — "Dream Crazy" (2018). Source: nike.com/... · 🟡 third-party · accessed {date}*
+```
+Show only the few most illustrative per brand; caption + source + confidence tag each.
 
 ## 6. Per-competitor teardown (4P/7P)
 One compact card per competitor. Product / Price / Place / Promotion, sourced.

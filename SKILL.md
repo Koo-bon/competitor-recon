@@ -69,6 +69,8 @@ every page** (needed for the credibility layer).
 python3 ~/.claude/skills/competitor-recon/scripts/fc.py markdown "URL" --main-only
 # screenshot (always grab visuals)
 python3 ~/.claude/skills/competitor-recon/scripts/fc.py screenshot "URL" -o recon/<brand>/home.png
+# campaign/creative images — pull actual campaign visuals + captions and download them
+python3 ~/.claude/skills/competitor-recon/scripts/fc.py images "URL" --limit 8 --output recon/<brand>/campaign
 # find pages/prices you don't have
 python3 ~/.claude/skills/competitor-recon/scripts/fc.py search "brand price positioning" --limit 5
 # structured fields via JSON schema
@@ -77,6 +79,14 @@ python3 ~/.claude/skills/competitor-recon/scripts/fc.py extract "URL" --schema s
 python3 ~/.claude/skills/competitor-recon/scripts/fc.py crawl "URL" --limit 30 --output recon/<brand>/
 ```
 Save under `recon/<brand>/` as a reusable library.
+
+**Collect visual evidence, not just text.** When a competitor's creative matters —
+their campaigns, key visuals, product shots — use the `images` command to pull the
+actual campaign imagery (e.g. researching Nike → grab the "Just Do It" / Dream
+Crazy campaign visuals). Download them so the report can *show* the creative, not
+just describe it. Always record each image's source page + caption for the
+credibility layer. Prefer real campaign/creative imagery over UI chrome (the
+command already skips logos/icons).
 
 ## STEP 4 — Analyze with the frameworks
 Run these (details in `references/frameworks.md`) — this is the professional core:
@@ -102,6 +112,10 @@ Assemble per `references/report-template.md`. Non-negotiables:
 - **Scorecard table** with rating dots (●●●●○) and confidence tags.
 - **Positioning map** showing the gap.
 - **Rise-to-fame cards** for the breakout brands.
+- **Embed real campaign imagery.** Where a competitor's creative is part of the
+  story, show the downloaded campaign images inline (markdown `![caption](path)`)
+  with a caption + source URL + date — so the user *sees* what a competitor ran,
+  not just reads about it. Keep to the few most illustrative per brand.
 - **SWOT + 3 "so-what" moves** for the user's own venture.
 - **Sources & confidence** section listing every data point.
 
