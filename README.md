@@ -12,7 +12,7 @@ Built for art directors, strategists, and marketers prepping campaign direction,
 ## Install
 
 ```bash
-git clone https://github.com/<your-account>/competitor-recon
+git clone https://github.com/Koo-bon/competitor-recon
 cp -r competitor-recon ~/.claude/skills/
 pip install -r ~/.claude/skills/competitor-recon/requirements.txt
 ```
