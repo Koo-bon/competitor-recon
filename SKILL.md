@@ -1,149 +1,121 @@
 ---
 name: competitor-recon
-description: "Collect and analyze competitors' live ads, products, and landing pages, then report the pricing, selling points, positioning, and strategy that are working — as a side-by-side comparison the user can act on. Use whenever the user wants to research a market, benchmark competitors, do market research before starting a business or campaign, scrape competitor sites, compare products/pricing, study positioning, or prep the 'competitive landscape' section of a pitch, plan, or brief. Triggers on market research, competitor analysis, competitive landscape, benchmarking, competitor pricing, positioning research, 시장조사, 경쟁사 분석, 경쟁사 데이터, 벤치마킹, 크리에이티브 레퍼런스."
+description: "Run a professional-grade market-research process — interview, market sizing, competitor teardown, framework analysis (STP, Five Forces, JTBD, SWOT), and 'why it blew up' growth deconstruction — then deliver a source-backed, high-visibility report a non-expert can act on. Use whenever the user wants market research, a competitive landscape, to benchmark competitors, research before starting a business or campaign, compare products/pricing/positioning, understand how a competitor got popular, or prep the 'competition' section of a pitch, plan, or brief. Triggers on market research, competitor analysis, competitive landscape, market sizing, benchmarking, positioning research, go-to-market research, 시장조사, 경쟁사 분석, 경쟁사 데이터, 벤치마킹, 포지셔닝, 리서치."
 allowed-tools: ["Bash", "Read", "Write", "WebSearch"]
 ---
 
 # Competitor Recon
 
-One skill that runs the whole market-research loop: **interview the user first → fetch real web data → analyze what's working → report a source-backed, side-by-side comparison the user can act on.**
+Runs the market-research process a professional strategy/insights team actually
+uses — **interview → market framing → competitor collection → framework analysis
+→ growth deconstruction → a high-visibility, source-backed report** — so a
+non-expert gets a pro-quality result by following one path.
 
-It merges a reliable web-collection layer (Firecrawl) with a structured competitive-analysis framework, so "how do we grab the data," "is the data trustworthy," and "what does it mean" all live in one place.
+It merges a reliable web-collection layer (Firecrawl) with the standard analyst
+toolkit. Three things make it professional rather than a scrape: it **frames the
+market with real frameworks**, it **verifies every number**, and it **explains
+how competitors actually rose**, not just what they sell.
 
-Use this for anyone — founder, art director, strategist, marketer — who wants to see what competitors actually do and turn it into direction for their own business, campaign, or pitch.
+## Operating principles
+- **Interview before researching.** Understand the decision first (Step 0).
+- **Follow the frameworks — they're the "must-do" of the profession.** Don't
+  improvise the analysis; run the named frameworks in `references/frameworks.md`.
+- **Breadth:** 5–7 direct + 2–3 adjacent competitors.
+- **Every number is sourced and confidence-tagged** (✅/🟡/⚠️).
+- **Visibility is a feature, not a nicety.** Lead with a one-screen summary,
+  use scorecards/maps/cards. Follow `references/report-template.md`.
 
-## Guiding principles
-- **Interview before researching.** A generic scrape produces a generic report. Understand what decision the user is trying to make *first* (see Step 0). This is the biggest driver of usefulness.
-- **Breadth matters.** Three competitors is a sketch, not a landscape. Aim for a named set of **5–7 direct competitors plus 2–3 adjacent/indirect ones**.
-- **Every number needs a source.** A benchmark nobody can trust is worthless. Cite the URL for each data point and mark whether it's confirmed or estimated (see Step 3).
-- **The deliverable is a comparison, not a pile.** The user should be able to scan one table and see how everyone differs. Lead with the table (see Step 4).
-
----
-
-## STEP 0 — Interview the user (do this FIRST, always)
-
-Before pulling any data, ask a short, focused set of questions. Don't skip this even if the user gave a one-liner — a one-liner is a starting point, not a brief. Ask these, adapting to what they already told you (don't re-ask what's answered):
-
-1. **Goal / decision** — "What decision will this research inform?" (e.g., whether to enter the market, how to price, how to position, what to put in a pitch). This shapes everything.
-2. **Category & scope** — "What exact product/category, and which geography/market?" (e.g., art-toy keyrings, US + Korea). Narrow scope = sharper data.
-3. **Competitors** — "Any specific competitors you already have in mind?" Then propose additions to reach 5–7 direct + a few adjacent, and get a quick confirm.
-4. **What to compare** — "Which dimensions matter most to you?" Offer a default set (pricing, product strategy, positioning, audience, channels, messaging, visual identity) and let them add/drop.
-5. **Output & depth** — "How deep, and in what form?" (quick one-page comparison vs. deep per-competitor teardown; table, slide-ready, or doc).
-
-Then reflect back a one-paragraph research plan and get a go-ahead before spending Firecrawl credits. If the user says "just go," proceed with sensible defaults but state the assumptions you're making.
-
-> Why this matters: the same category ("art toys") means completely different research for someone pricing a $15 keyring vs. someone pitching a gallery collab. The interview is what makes the report *theirs*.
+Bundled references — read the relevant one when you reach that stage:
+- `references/frameworks.md` — TAM/SAM/SOM, JTBD, Five Forces, STP, 4P/7P, positioning map, SWOT.
+- `references/rise-to-fame.md` — how to reverse-engineer why a brand blew up.
+- `references/report-template.md` — the visibility-first output structure.
 
 ---
 
-## STEP 1 — Build the competitor set
+## STEP 0 — Interview (always first)
+Even if the user gave a one-liner, ask a short focused set before spending
+credits. Adapt to what's already answered:
+1. **Goal / decision** this research informs (enter market? price? position? pitch?).
+2. **Category & geography** (exact product + market).
+3. **Competitors** already in mind (you'll expand to 5–7 + adjacent).
+4. **Dimensions** that matter most (offer defaults: positioning, pricing, audience, channel, messaging, visual, growth story).
+5. **Depth & format** (one-pager vs deep teardown; table/slide/doc).
 
-From the interview, assemble and briefly confirm:
-- **5–7 direct competitors** (same thing, same buyer).
-- **2–3 adjacent/indirect** players (different form, same need, or a category-adjacent brand the buyer also considers). These are where the best "gap" insights come from.
+Reflect back a one-paragraph research plan, then proceed. If told "just go," use
+sensible defaults but state your assumptions.
 
-If the user only named a few, use `WebSearch` and the `search` command to discover the rest ("top [category] brands", "alternatives to X"). List them so the user can veto before you scrape.
+## STEP 1 — Frame the market (secondary research the pros never skip)
+Before competitors, establish the playing field using `references/frameworks.md`:
+- **TAM / SAM / SOM** — size the opportunity with sourced numbers.
+- **Jobs-To-Be-Done** — what customers actually hire this category for.
+- **Porter's Five Forces** — is the market attractive or brutal?
 
----
+Use `WebSearch` + the `search` command for industry size, trends, and reports.
+This is what makes the later competitor data *mean* something.
 
-## STEP 2 — Collect (Firecrawl layer)
+## STEP 2 — Build the competitor set
+Assemble **5–7 direct** (same job, same buyer) + **2–3 adjacent/indirect**
+(different form, same need). Discover missing ones via `WebSearch`
+("top [category] brands", "alternatives to X"). List them for a quick veto
+before scraping.
 
-All collection uses the bundled script. It needs `FIRECRAWL_API_KEY` (see README) — if it's missing, stop and tell the user how to set it rather than guessing.
+## STEP 3 — Collect (Firecrawl layer)
+Uses the bundled script; needs `FIRECRAWL_API_KEY` (see README) — if missing,
+stop and tell the user how to set it. **Record the source URL + access date for
+every page** (needed for the credibility layer).
 
-**As you collect, record the source URL and access date for every page** — you'll need these for the credibility layer.
-
-Fetch a page as clean markdown (strip nav/footer with `--main-only`):
 ```bash
-python3 ~/.claude/skills/competitor-recon/scripts/fc.py markdown "https://competitor.com" --main-only
+# clean page text
+python3 ~/.claude/skills/competitor-recon/scripts/fc.py markdown "URL" --main-only
+# screenshot (always grab visuals)
+python3 ~/.claude/skills/competitor-recon/scripts/fc.py screenshot "URL" -o recon/<brand>/home.png
+# find pages/prices you don't have
+python3 ~/.claude/skills/competitor-recon/scripts/fc.py search "brand price positioning" --limit 5
+# structured fields via JSON schema
+python3 ~/.claude/skills/competitor-recon/scripts/fc.py extract "URL" --schema schema.json --prompt "..."
+# breadth crawl (1 credit/page — set --limit)
+python3 ~/.claude/skills/competitor-recon/scripts/fc.py crawl "URL" --limit 30 --output recon/<brand>/
 ```
+Save under `recon/<brand>/` as a reusable library.
 
-Screenshot a page (visuals matter — always capture landing/product pages):
-```bash
-python3 ~/.claude/skills/competitor-recon/scripts/fc.py screenshot "https://competitor.com" -o recon/competitor/home.png
-```
+## STEP 4 — Analyze with the frameworks
+Run these (details in `references/frameworks.md`) — this is the professional core:
+- **STP** — segment the market, pick the winnable target, draft a positioning statement.
+- **4P / 7P teardown** — one comparable row per competitor.
+- **Positioning map** — plot on the 2 axes that matter for THIS decision; mark white space.
 
-Find pages/prices you don't have URLs for:
-```bash
-python3 ~/.claude/skills/competitor-recon/scripts/fc.py search "brand blind box single price" --limit 5
-```
+**Verify as you go (non-negotiable):** cite each data point's URL; tag ✅ confirmed
+(official page) / 🟡 third-party (marketplace/press) / ⚠️ unverified; cross-check
+anything surprising with a second source; prefer primary sources; never invent —
+write "not found" instead.
 
-Extract structured fields (headline, CTA, price) across pages with a JSON schema:
-```bash
-python3 ~/.claude/skills/competitor-recon/scripts/fc.py extract "https://competitor.com/pricing" --schema schema.json --prompt "Extract headline, primary CTA, and price tiers"
-```
+## STEP 5 — Deconstruct the winners' rise
+For the 2–3 breakout competitors, run `references/rise-to-fame.md`: trace the 6
+growth levers (origin spark → ignition channel → scarcity mechanic → community →
+collab → emotional core), lay them on a dated timeline, and separate 🔁 repeatable
+moves from 🎲 luck. This turns "what they sell" into "how you could rise too."
 
-Crawl a whole site when breadth matters (each page costs one credit — set sane `--limit`):
-```bash
-python3 ~/.claude/skills/competitor-recon/scripts/fc.py crawl "https://competitor.com" --limit 30 --output recon/competitor/
-```
+## STEP 6 — Report (visibility-first)
+Assemble per `references/report-template.md`. Non-negotiables:
+- **One-screen summary first** — market size, the job, the white space, recommended
+  positioning, top-3 moves. It must stand alone.
+- **Scorecard table** with rating dots (●●●●○) and confidence tags.
+- **Positioning map** showing the gap.
+- **Rise-to-fame cards** for the breakout brands.
+- **SWOT + 3 "so-what" moves** for the user's own venture.
+- **Sources & confidence** section listing every data point.
 
-Save everything under `recon/<competitor>/` so the user keeps a reusable reference library.
-
----
-
-## STEP 3 — Analyze + verify (credibility layer)
-
-For every competitor, read the markdown and look at the screenshots, then pull out: **pricing, product/selling strategy, positioning, target audience, channels, messaging, visual identity.** Always say *why* something works, not just *what* it is.
-
-**Trust discipline — this is non-negotiable, it's what makes the report credible:**
-
-- **Cite every data point.** Each price, claim, or stat gets a source URL. No URL, no number.
-- **Tag confidence.** Mark each fact:
-  - ✅ **Confirmed** — read directly from the brand's own official page.
-  - 🟡 **Estimated / third-party** — from a marketplace (Amazon/Walmart), press, or inference. Say so.
-  - ⚠️ **Unverified** — couldn't confirm; flag it rather than presenting it as fact.
-- **Cross-check anything surprising.** If a price or claim looks off, confirm it from a second independent source (use `WebSearch`) before reporting it.
-- **Prefer primary sources.** The brand's own site > marketplace listing > blog/press > social hearsay. When sources conflict, say which you trust and why.
-- **Note freshness.** Record the access date; prices and campaigns change.
-- **Never invent.** If data can't be found, write "not found" — do not fill gaps with plausible-sounding guesses.
-
----
-
-## STEP 4 — Report (lead with the comparison table)
-
-Structure below unless the user asked otherwise. **The at-a-glance comparison table is mandatory and comes first** — it's the payoff for "I can't see the differences clearly."
-
-```markdown
-# {Category} Competitor Recon — {N direct + M adjacent competitors}
-
-*Research goal: {from interview}. Scope: {category / geography}. Data as of {date}.*
-
-## 1. At-a-glance comparison  ← ALWAYS a table, ALWAYS first
-| Brand | Positioning | Core selling point | Price range | Target buyer | Key channel | Signature visual |
-|-------|-------------|--------------------|-------------|--------------|-------------|------------------|
-| A     | ...         | ...                | $x–$y ✅    | ...          | ...         | ...              |
-| B     | ...         | ...                | $z 🟡       | ...          | ...         | ...              |
-(one row per competitor; use ✅/🟡/⚠️ tags on numbers)
-
-## 2. Selling points & differentiation
-Per competitor: the ONE thing they win on, and how they're different from the rest.
-
-## 3. Pricing & business-model breakdown
-How each makes money (blind-box randomness, size ladders, collabs, subscription…), with sourced prices.
-
-## 4. Positioning map
-Place competitors on 2 axes that matter for THIS user's decision.
-
-## 5. Messaging & visual patterns
-Recurring hooks, copy formulas, visual archetypes — with why they work.
-
-## 6. Gaps & opportunities (the important part)
-Angles nobody owns, over-saturated spaces to avoid, concrete directions for the user.
-
-## 7. Sources & confidence
-Every data point → its URL and ✅/🟡/⚠️ tag. Note anything unverified.
-
-## 8. Reference library
-Paths to saved screenshots and markdown.
-```
-
-The **Gaps & opportunities** section is where the value lands: the point of studying competitors is to find the space they've left open, not to copy them.
+The payoff is **Gaps & opportunities**: the point of all this is to find the space
+competitors left open and hand the user a defensible move — never to copy them.
 
 ## Legal & ethical guardrails
-Use this for research and inspiration only. Study patterns and adapt them into original work — never copy competitor copy, characters, or designs verbatim (some IP, e.g. major toy characters, is strongly protected). The deliverable is *direction for original work*, not a clone.
+Research and inspiration only. Study patterns, adapt into original work — never
+copy competitor copy, characters, or designs verbatim (major toy/character IP is
+strongly protected). The deliverable is *direction for original work*, not a clone.
 
 ---
 **Credits / inspiration:** collection layer built on the public
-[Firecrawl](https://www.firecrawl.dev) SDK; the analysis framework is inspired by
-ComposioHQ's `competitive-ads-extractor` skill and Sumant Subrahmanya's
-competitor-ads use case (Lenny's Newsletter). Rewritten as original work for this skill.
+[Firecrawl](https://www.firecrawl.dev) SDK; analysis framework inspired by
+ComposioHQ's `competitive-ads-extractor` and Sumant Subrahmanya's competitor-ads
+use case (Lenny's Newsletter), extended with standard market-research frameworks.
+Rewritten as original work for this skill.
