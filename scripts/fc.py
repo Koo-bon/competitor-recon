@@ -7,6 +7,8 @@ subcommands. Requires FIRECRAWL_API_KEY in the environment (or a .env file
 in the current dir or the user's home dir).
 """
 
+from __future__ import annotations
+
 import argparse
 import base64
 import json
